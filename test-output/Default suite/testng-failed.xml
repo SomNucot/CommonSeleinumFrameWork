@@ -3,15 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="nucot.newnucotapp.base.AdminPageTest">
+      <class name="nucot.newnucotapp.base.LoginPageTest">
         <methods>
-          <include name="adminPageSetUP"/>
-          <include name="adminPagetitleTest"/>
+          <include name="loginTest"/>
           <include name="closeApp"/>
           <include name="setUpApp"/>
-          <include name="adminPageUrlTest"/>
         </methods>
-      </class> <!-- nucot.newnucotapp.base.AdminPageTest -->
+      </class> <!-- nucot.newnucotapp.base.LoginPageTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -1,12 +1,18 @@
 package nucot.newnucotapp.pages;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+
+import nucot.newnucotapp.util.ElementUtil;
+
 
 public class LoginPage {
 
 	
 public WebDriver odriver;
+public ElementUtil eleUtil;
 	
 	//1.By locators
 	
@@ -18,7 +24,8 @@ public WebDriver odriver;
 	//2.page constant
 	
 	public LoginPage(WebDriver odriver){
-		this.odriver=odriver;	
+		this.odriver=odriver;
+		eleUtil = new ElementUtil(odriver);
 	}
 	
 	//3.PageActions/implemented methods	
@@ -36,13 +43,14 @@ public WebDriver odriver;
 	}
 	
 	//TDD
-	public AdminPage loginApp(String un,String pwd) throws InterruptedException{
-		Thread.sleep(3000);
-		odriver.findElement(userName).sendKeys(un);
-		Thread.sleep(3000);
-		odriver.findElement(passWord).sendKeys(pwd);
-		odriver.findElement(loginButton).click();
-		Thread.sleep(3000);
+	public AdminPage loginApp(String un,String pwd) {
+		System.out.println("App creds are : " + un + ":" + pwd);
+		odriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		eleUtil.doSendKeys(userName, un);
+		odriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		eleUtil.doSendKeys(passWord, pwd);
+		eleUtil.doClick(loginButton);
+		odriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		return new AdminPage(odriver);
 	}
 
